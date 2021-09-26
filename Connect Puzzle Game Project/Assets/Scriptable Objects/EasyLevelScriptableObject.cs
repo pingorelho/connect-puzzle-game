@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-[CreateAssetMenu(fileName ="New Level Object", menuName ="Create New Level/Easy")]
-public class EasyLevelScriptableObject : Level
+[System.Serializable]
+[CreateAssetMenu(fileName = "New Level Object", menuName = "Create New Level/Easy")]
+public class EasyLevelScriptableObject : ScriptableObject
 {
+    public Level Level;
     public void Awake()
     {
-
-        Difficulty = Difficulty.Easy;
-
-        CreateGrid();
+        if (Level == null)
+        {
+            Level = new Level(Difficulty.Easy);
+        }
     }
-
 }

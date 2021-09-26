@@ -5,23 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Level Database", menuName ="Create New Database/Level Database")]
 public class LevelDatabase : ScriptableObject, ISerializationCallbackReceiver
 {
-    public EasyLevelScriptableObject[] EasyLevels;
-    //public MediumLevelScriptableObject[] MediumLevels;
-    //public HardLevelScriptableObject[] HardLevels;
+    public Level[] Levels;
 
-    public Dictionary<EasyLevelScriptableObject, int> LevelNumber = new Dictionary<EasyLevelScriptableObject, int>();
+    public Dictionary<int, Level> GetLevelFromID = new Dictionary<int, Level>();
 
     public void OnAfterDeserialize()
     {
-        LevelNumber = new Dictionary<EasyLevelScriptableObject, int>();
-        for (int i = 0; i < EasyLevels.Length; i++)
+        for (int i = 0; i < Levels.Length; i++)
         {
-            LevelNumber.Add(EasyLevels[i], i);
+            Levels[i].LevelID = i;
+            GetLevelFromID.Add(i, Levels[i]);
         }
     }
 
     public void OnBeforeSerialize()
     {
+        GetLevelFromID = new Dictionary<int, Level>();
     }
 
 }

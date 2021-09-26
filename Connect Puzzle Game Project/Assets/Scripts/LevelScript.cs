@@ -10,9 +10,10 @@ public enum Difficulty
     Hard
 }
 
-public abstract class Level : ScriptableObject {
+[System.Serializable]
+public class Level{
 
-    public int LevelNumber;
+    public int LevelID;
     public int Width;
     public int Height;
     public int NumberOfSourceDestinationPairs;
@@ -23,8 +24,10 @@ public abstract class Level : ScriptableObject {
 
     public int[,] LevelGrid; //This is the playable gameboard/grid
     
-    public void CreateGrid()
+    public Level(Difficulty difficulty)
     {
+        Difficulty = difficulty;
+
         //Set the width, height and number of sources & destinations the level will have depending on the difficulty
         switch (Difficulty)
         {
