@@ -2,28 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Difficulty
+{
+    Easy,
+    Medium,
+    Hard
+}
+
 public class Grid {
 
-    private int width;
-    private int height;
-    private int numberOfSourceDestinationPairs;
+    //private int width;
+    //private int height;
+    //private int numberOfSourceDestinationPairs;
+    //private Difficulty difficulty;
 
     private Vector2Int[] lightSources; //To keep track of light sources positions
     private Vector2Int[] destinations; //To keep track of destinations positions
 
     private int[,] grid; //This is the playable gameboard/grid
 
+    public Grid(int width, int height, Difficulty difficulty)
+    {
+
+        //this.width = width;
+        //this.height = height;
+        //this.numberOfSourceDestinationPairs = numberOfSources;
+        //this.difficulty = difficulty;
 
 
-    public Grid(int width, int height,int numberOfSources) {
+        //determine number of light sources the level will have based on the difficulty
+        int numberOfSources = 1;
 
-        this.width = width;
-        this.height = height;
-        this.numberOfSourceDestinationPairs = numberOfSources;
+        switch (difficulty)
+        {
+            case Difficulty.Easy: numberOfSources = Random.Range(1, 2);
+                break;
+            case Difficulty.Medium: numberOfSources = Random.Range(3, 4);
+                break;
+            case Difficulty.Hard: numberOfSources = Random.Range(5, 6);
+                break;
+            default:
+                break;
+        }
 
 
-        lightSources = new Vector2Int[numberOfSourceDestinationPairs];
-        destinations = new Vector2Int[numberOfSourceDestinationPairs];
+        lightSources = new Vector2Int[numberOfSources];
+        destinations = new Vector2Int[numberOfSources];
 
         //Initialize grid
         grid = new int[width, height];
@@ -36,10 +61,12 @@ public class Grid {
         }
 
         //Randomly set the sources and destinations in the grid
-        for (int i = 0; i < numberOfSourceDestinationPairs; i++) {
+        for (int i = 0; i < numberOfSources; i++) {
 
+            int loopBreakout = 0;
             bool sourcePlaced = false;
-            while (!sourcePlaced) {
+            while (!sourcePlaced || loopBreakout== 10) {
+                loopBreakout++;
                 //Pick a random cell on the grid
                 //int x = Random.Range(0, width - 1);
                 //int y = Random.Range(0, width - 1);
@@ -59,7 +86,9 @@ public class Grid {
 
                     //Do the same for destinations
                     bool destinationPlaced = false;
-                    while (!destinationPlaced) {
+                    int loopBreakout2 = 0;
+                    while (!destinationPlaced || loopBreakout2==50) {
+                        loopBreakout2++;
                         randomCell = RandomPairInRange(0, width - 1, 0, height - 1);
 
                         if (grid[randomCell.x, randomCell.y] == 0) {

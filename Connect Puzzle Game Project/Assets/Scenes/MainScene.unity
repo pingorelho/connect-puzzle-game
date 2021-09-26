@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 11529436}
   - component: {fileID: 11529438}
   - component: {fileID: 11529437}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 373486248}
   - component: {fileID: 373486250}
   - component: {fileID: 373486249}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567026215}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 762965610}
   - component: {fileID: 762965612}
   - component: {fileID: 762965611}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerToolText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 965561748}
   - component: {fileID: 965561747}
   - component: {fileID: 965561746}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -827,7 +827,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 965561747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651529318}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1416626832}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &965561747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,13 +859,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965561744}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -878,8 +902,8 @@ GameObject:
   - component: {fileID: 1356273539}
   - component: {fileID: 1356273538}
   - component: {fileID: 1356273537}
-  m_Layer: 0
-  m_Name: Canvas
+  m_Layer: 5
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +1004,7 @@ GameObject:
   - component: {fileID: 1409121906}
   - component: {fileID: 1409121905}
   - component: {fileID: 1409121904}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,7 +1074,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1409121905}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1416626832}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1651529318}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1409121905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,7 +1146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1416626833}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelPickMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,7 +1185,7 @@ GameObject:
   - component: {fileID: 1420894468}
   - component: {fileID: 1420894470}
   - component: {fileID: 1420894469}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerToolText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1320,7 @@ GameObject:
   - component: {fileID: 1431683832}
   - component: {fileID: 1431683831}
   - component: {fileID: 1431683830}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1368,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1350,13 +1398,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431683828}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1393,7 +1441,7 @@ GameObject:
   - component: {fileID: 1445501753}
   - component: {fileID: 1445501752}
   - component: {fileID: 1445501751}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelDesignerToolButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,7 +1489,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1471,13 +1519,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445501749}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1512,7 +1560,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1464373184}
   - component: {fileID: 1464373186}
-  - component: {fileID: 1464373185}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -1534,14 +1581,6 @@ Transform:
   m_Father: {fileID: 408621308}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1464373185
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464373183}
-  m_Enabled: 1
 --- !u!20 &1464373186
 Camera:
   m_ObjectHideFlags: 0
@@ -1597,7 +1636,7 @@ GameObject:
   - component: {fileID: 1484060430}
   - component: {fileID: 1484060429}
   - component: {fileID: 1484060428}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1756,7 @@ GameObject:
   - component: {fileID: 1574252788}
   - component: {fileID: 1574252790}
   - component: {fileID: 1574252789}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1849,13 +1888,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651529319}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1651529319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1889,7 +1928,7 @@ GameObject:
   - component: {fileID: 1936081593}
   - component: {fileID: 1936081592}
   - component: {fileID: 1936081591}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2081,7 @@ GameObject:
   - component: {fileID: 2040530568}
   - component: {fileID: 2040530570}
   - component: {fileID: 2040530569}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
