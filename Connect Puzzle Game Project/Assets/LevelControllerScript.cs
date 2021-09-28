@@ -12,8 +12,6 @@ public class LevelControllerScript : MonoBehaviour
     public GameObject SquarePrefab;
     public GameObject SourcePrefab;
     public GameObject DestinationPrefab;
-    //public GameObject NumberedSquarePrefab;
-    //public Canvas CanvasReference;
 
     public Color SourceColor1;
     public Color SourceColor2;
@@ -21,6 +19,8 @@ public class LevelControllerScript : MonoBehaviour
     public Color SourceColor4;
     public Color SourceColor5;
     public Color SourceColor6;
+
+    public Color NullColor;
 
     public float XSpaceBetweenSquares;
     public float YSpaceBetweenSquares;
@@ -30,7 +30,8 @@ public class LevelControllerScript : MonoBehaviour
 
     public Color ActiveColor;
 
-    //public GameObject collided;
+    public int ConnectedPaths = 0;
+    public List<Color> CompletedColors;
 
     // Start is called before the first frame update
     void Start()
@@ -38,45 +39,100 @@ public class LevelControllerScript : MonoBehaviour
         Level = LevelPrefab.Level;
         BuildGrid();
         CreateDisplay();
+
+        ActiveColor = NullColor;
+        CompletedColors = new List<Color>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //On click
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Check to see if clicking a source and if so pick up the color
+            SetActiveLightSourceColor();
+        }
+
+        //Drop color on release
+        if (Input.GetMouseButtonUp(0))
+        {
+            ActiveColor = NullColor;
+        }
+
+        //If holding a color and holding down click
         if (Input.GetMouseButton(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mouse2d = new Vector2(mousePos.x, mousePos.y);
-            Ray ray = new Ray(mouse2d, Vector3.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (ActiveColor != NullColor)
             {
-                if (hit.collider != null)
+                ChangeSquareColor();
+            }
+        }
+    }
+
+    public void ChangeSquareColor()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Ray ray = new Ray(mousePos, Vector3.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider != null)
+            {
+                //If its an untouched empty square or destination or the same colored source
+                if (hit.collider.GetComponent<SpriteRenderer>().color == SquarePrefab.GetComponent<SpriteRenderer>().color || hit.collider.GetComponent<SpriteRenderer>().color == ActiveColor)
+                {
+                    if (hit.collider.tag == "empty" || hit.collider.tag == "destination")
+                    {
+                        hit.collider.GetComponent<SpriteRenderer>().color = ActiveColor;
+
+                        if (hit.collider.tag == "destination")
+                        {
+                            ConnectedPaths++;
+                            CompletedColors.Add(ActiveColor);
+                            ActiveColor = NullColor;
+                        }
+                    }
+                }
+                else //Else drop color
+                {
+                    ActiveColor = NullColor;
+                }
+            }
+        }
+    }
+
+    public bool CheckIfColorIsCompleted(Collider collider)
+    {
+        foreach (Color color in CompletedColors)
+        {
+            if (collider.GetComponent<SpriteRenderer>().color == color)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void SetActiveLightSourceColor()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Ray ray = new Ray(mousePos, Vector3.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider != null)
+            {
+                //If its a source and it hasnt been connected to a destination yet
+                if (hit.collider.tag == "source" && !CheckIfColorIsCompleted(hit.collider))
                 {
                     ActiveColor = hit.collider.GetComponent<SpriteRenderer>().color;
                 }
             }
-
-            //if (ActiveColor == null)
-            //{
-            //    SetActiveLightSourceColor();
-            //}
         }
     }
-
-    //public void SetActiveLightSourceColor()
-    //{
-    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    RaycastHit raycast = new RaycastHit();
-
-    //    if (Physics.Raycast(ray, out raycast))
-    //    {
-    //        if (raycast.collider != null)
-    //        {
-    //        }
-    //    }
-    //}
 
     public void CreateDisplay() {
 

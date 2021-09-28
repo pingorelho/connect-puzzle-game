@@ -15,6 +15,4 @@ public class HardLevelScriptableObject : ScriptableObject
             Level = new Level(Difficulty.Hard);
         }
     }
-
-
 }
