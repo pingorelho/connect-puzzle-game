@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8081123094d73b74a845c01c4be3788b, type: 3}
-  m_Name: hardlevel3
+  m_Name: hard1
   m_EditorClassIdentifier: 
   Level:
     LevelID: 0
-    Width: 7
-    Height: 7
+    Width: 5
+    Height: 5
     NumberOfSourceDestinationPairs: 5
     Difficulty: 2
     LightSources:
-    - {x: 0, y: 4}
-    - {x: 4, y: 4}
-    - {x: 2, y: 4}
-    - {x: 1, y: 2}
+    - {x: 3, y: 0}
     - {x: 2, y: 1}
-    Destinations:
+    - {x: 2, y: 3}
     - {x: 0, y: 0}
-    - {x: 5, y: 0}
     - {x: 2, y: 0}
-    - {x: 4, y: 2}
-    - {x: 2, y: 2}
+    Destinations:
+    - {x: 1, y: 0}
+    - {x: 1, y: 2}
+    - {x: 3, y: 1}
+    - {x: 3, y: 3}
+    - {x: 0, y: 1}

@@ -21,9 +21,15 @@ public class Level{
 
     public Vector2Int[] LightSources; //To keep track of light sources positions
     public Vector2Int[] Destinations; //To keep track of destinations positions
-
-    public int[,] LevelGrid; //This is the playable gameboard/grid
     
+    [SerializeField]
+    public int[,] LevelGrid; //This is the playable gameboard/grid
+
+    public Level()
+    {
+
+    }
+
     public Level(Difficulty difficulty)
     {
         Difficulty = difficulty;
@@ -119,7 +125,7 @@ public class Level{
 
 
     //Check if the level is solvable
-    //public bool ValidateGrid(int[,] grid) {
+    //public bool ValidateGrid() {
         
     //}
 
