@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Level Object", menuName = "Create New Level/Easy")]
 public class EasyLevelScriptableObject : ScriptableObject
 {
+    public bool LevelIsCompleted;
     public Level Level;
     public void Awake()
     {

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelControllerScript : MonoBehaviour
 {
-    public HardLevelScriptableObject LevelPrefab;
+    public Database Database;
+
     public Level Level;
     public GameObject SquarePrefab;
     public GameObject SourcePrefab;
@@ -34,9 +36,60 @@ public class LevelControllerScript : MonoBehaviour
     public List<Color> CompletedColors;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        Level = LevelPrefab.Level;
+        if (CrossSceneController.CurrentWorld=="easy")
+        {
+            switch (CrossSceneController.CurrentLevel)
+            {
+                case 1:
+                    Level = Database.EasyWorlds[0].WorldLevels[0].Level;
+                    break;
+                case 2:
+                    Level = Database.EasyWorlds[0].WorldLevels[1].Level;
+                    break;
+                case 3:
+                    Level = Database.EasyWorlds[0].WorldLevels[2].Level;
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (CrossSceneController.CurrentWorld == "medium")
+        {
+            switch (CrossSceneController.CurrentLevel)
+            {
+                case 1:
+                    Level = Database.MediumWorlds[0].WorldLevels[0].Level;
+                    break;
+                case 2:
+                    Level = Database.MediumWorlds[0].WorldLevels[1].Level;
+                    break;
+                case 3:
+                    Level = Database.MediumWorlds[0].WorldLevels[2].Level;
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (CrossSceneController.CurrentWorld == "hard")
+        {
+            switch (CrossSceneController.CurrentLevel)
+            {
+                case 1:
+                    Level = Database.HardWorlds[0].WorldLevels[0].Level;
+                    break;
+                case 2:
+                    Level = Database.HardWorlds[0].WorldLevels[1].Level;
+                    break;
+                case 3:
+                    Level = Database.HardWorlds[0].WorldLevels[2].Level;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         BuildGrid();
         CreateDisplay();
 
@@ -70,6 +123,17 @@ public class LevelControllerScript : MonoBehaviour
         }
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitLevel()
+    {
+        CrossSceneController.BackFromLevel = true;
+        SceneManager.LoadScene(0);
+    }
+
     public void ChangeSquareColor()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -92,6 +156,8 @@ public class LevelControllerScript : MonoBehaviour
                             ConnectedPaths++;
                             CompletedColors.Add(ActiveColor);
                             ActiveColor = NullColor;
+
+                            CheckForWin();
                         }
                     }
                 }
@@ -100,6 +166,41 @@ public class LevelControllerScript : MonoBehaviour
                     ActiveColor = NullColor;
                 }
             }
+        }
+    }
+
+    public void CheckForWin()
+    {
+        if (ConnectedPaths==Level.NumberOfSourceDestinationPairs)
+        {
+            //WIN
+            if (CrossSceneController.CurrentWorld == "easy")
+            {
+                Database.EasyWorlds[0].WorldLevels[CrossSceneController.CurrentLevel-1].LevelIsCompleted=true;
+                if (CrossSceneController.CurrentLevel == 3)
+                {
+                    Database.EasyWorlds[0].WorldIsCompleted = true;
+                }
+            }
+            if (CrossSceneController.CurrentWorld == "medium")
+            {
+                Database.MediumWorlds[0].WorldLevels[CrossSceneController.CurrentLevel - 1].LevelIsCompleted = true;
+                if (CrossSceneController.CurrentLevel == 3)
+                {
+                    Database.MediumWorlds[0].WorldIsCompleted = true;
+                }
+            }
+            if (CrossSceneController.CurrentWorld == "hard")
+            {
+                Database.HardWorlds[0].WorldLevels[CrossSceneController.CurrentLevel - 1].LevelIsCompleted = true;
+                if (CrossSceneController.CurrentLevel == 3)
+                {
+                    Database.HardWorlds[0].WorldIsCompleted = true;
+                }
+            }
+            Database.EasyWorlds[0].IsLevelComplete.Add(true);
+
+            QuitLevel();
         }
     }
 
@@ -135,7 +236,8 @@ public class LevelControllerScript : MonoBehaviour
     }
 
     public void CreateDisplay() {
-
+        ConnectedPaths = 0;
+        CompletedColors = new List<Color>();
         float xstartingpos, ystartingpos;
 
         xstartingpos = Xoffset - (Level.Width / 2) * XSpaceBetweenSquares;
@@ -192,8 +294,8 @@ public class LevelControllerScript : MonoBehaviour
 
     public void BuildGrid()
     {
-        int Width = LevelPrefab.Level.Width;
-        int Height = LevelPrefab.Level.Height;
+        int Width = Level.Width;
+        int Height = Level.Height;
         //Initialize grid array
         Level.LevelGrid = new int[Width, Height];
 
@@ -207,13 +309,13 @@ public class LevelControllerScript : MonoBehaviour
         }
 
         int iteration = 1;
-        foreach (Vector2Int position in LevelPrefab.Level.LightSources)
+        foreach (Vector2Int position in Level.LightSources)
         {
             Level.LevelGrid[position.x, position.y] = iteration;
             iteration++;
         }
 
-        foreach (Vector2Int position in LevelPrefab.Level.Destinations)
+        foreach (Vector2Int position in Level.Destinations)
         {
             Level.LevelGrid[position.x, position.y] = -1;
         }
