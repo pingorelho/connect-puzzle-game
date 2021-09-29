@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class LevelControllerScript : MonoBehaviour
 {
+    public Animator transition;
+
     public Database Database;
 
     public Level Level;
@@ -131,6 +133,15 @@ public class LevelControllerScript : MonoBehaviour
     public void QuitLevel()
     {
         CrossSceneController.BackFromLevel = true;
+        StartCoroutine(QuitLevelAnim());
+    }
+
+    IEnumerator QuitLevelAnim()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
         SceneManager.LoadScene(0);
     }
 

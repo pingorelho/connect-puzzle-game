@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class WorldSceneControllScript : MonoBehaviour
 {
+    public Animator transition;
+
     public Database Database;
 
     public GameObject EasyButton;
@@ -71,6 +73,15 @@ public class WorldSceneControllScript : MonoBehaviour
 
     public void LoadLevel()
     {
+        StartCoroutine(LoadLevelAnim());
+    }
+
+    IEnumerator LoadLevelAnim()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
         SceneManager.LoadScene(1);
     }
 
