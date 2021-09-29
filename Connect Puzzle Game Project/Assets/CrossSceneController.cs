@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class CrossSceneController
 {
+    //These props are used globally to help with transitionings between scenes
     public static int CurrentLevel { get; set; }
     public static string CurrentWorld { get; set; }
 

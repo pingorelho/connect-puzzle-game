@@ -96,6 +96,7 @@ public class WorldSceneControllScript : MonoBehaviour
         CrossSceneController.CurrentLevel = level;
     }
 
+    //Set the level buttons to locked or available with the correct color from the selected world
     public void UpdateLevelButtonsDisplay()
     {
         switch (SelectedWorld)

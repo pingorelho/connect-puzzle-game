@@ -303,6 +303,8 @@ public class LevelControllerScript : MonoBehaviour
         }
     }
 
+    //This is needed because unity does not serialize multi dimensional lists/arrays
+    //so the info in Level.LevelGrid gets lost but can be rebuilt using the sources and destinations positions arrays
     public void BuildGrid()
     {
         int Width = Level.Width;
